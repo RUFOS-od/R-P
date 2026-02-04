@@ -1,0 +1,819 @@
+/* African Luxe Theme - CSS Variables */
+:root {
+    --primary-color: #B53E0F;
+    /* Deep Burnt Orange */
+    --gold-foil: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    --gold-solid: #D4AF37;
+    --dark-brown: #3E2723;
+    --cream-bg: #FFF8E7;
+    --white: #FFFFFF;
+    --green-accent: #2E5D4B;
+    /* Emerald */
+
+    --font-heading: 'Cinzel', serif;
+    /* Premium, Roman-style */
+    --font-subheading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    /* Clean, Modern */
+    --font-script: 'Great Vibes', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--cream-bg);
+    color: var(--dark-brown);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Rich Fabric Texture */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.4s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Navigation --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 0;
+    z-index: 1000;
+    background: rgba(255, 248, 231, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    transition: 0.3s;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gold-foil);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 2px solid var(--gold-solid);
+    padding: 5px 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--dark-brown);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-solid);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.btn-nav {
+    border: 1px solid var(--primary-color);
+    padding: 8px 15px;
+    color: var(--primary-color) !important;
+}
+
+.btn-nav:hover {
+    background: var(--primary-color);
+    color: var(--white) !important;
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    background: url('hero-bg-fusion.png') center top/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-attachment: fixed;
+    /* Parallax effect */
+}
+
+/* ... existing styles ... */
+
+/* --- Cultural Elements (Kente & Adinkra) --- */
+.kente-border {
+    position: relative;
+}
+
+.kente-border::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+            #FFD700 0px, #FFD700 10px,
+            /* Gold */
+            #006400 10px, #006400 20px,
+            /* Green */
+            #B22222 20px, #B22222 30px,
+            /* Red */
+            #000000 30px, #000000 40px
+            /* Black */
+        );
+    z-index: 5;
+}
+
+.event-ticket::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(180deg,
+            #FFD700 0px, #FFD700 10px,
+            #006400 10px, #006400 20px,
+            #B22222 20px, #B22222 30px,
+            #000000 30px, #000000 40px);
+    z-index: 2;
+}
+
+/* Adinkra Divider Simulation */
+.adinkra-divider {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2rem;
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.adinkra-divider span {
+    display: inline-block;
+    padding: 0 15px;
+    position: relative;
+}
+
+.adinkra-divider span::before,
+.adinkra-divider span::after {
+    content: '❖';
+    /* Geometric symbol representing Adinkra aesthetic */
+    font-size: 1.5rem;
+    color: var(--gold-solid);
+    margin: 0 10px;
+}
+
+.hero-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(62, 39, 35, 0.4), rgba(62, 39, 35, 0.8));
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    padding: 20px;
+}
+
+.hero-border {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 60px 40px;
+    backdrop-filter: blur(2px);
+    position: relative;
+}
+
+.hero-border::before,
+.hero-border::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(212, 175, 55, 0.8);
+    /* Gold border */
+    top: 10px;
+    left: 10px;
+    z-index: -1;
+}
+
+.pre-title {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: var(--gold-solid);
+}
+
+.main-title {
+    font-family: var(--font-heading);
+    /* Cinzel */
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin: 10px 0;
+    background: var(--gold-foil);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.main-title .amp {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    color: var(--white);
+    -webkit-text-fill-color: var(--white);
+    font-weight: 400;
+}
+
+.date {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin-top: 20px;
+}
+
+.sub-date {
+    font-size: 1rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.scroll-down {
+    display: block;
+    margin-top: 40px;
+    height: 50px;
+    width: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.scroll-down span {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background: var(--white);
+    margin: 5px auto;
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+}
+
+/* --- Countdown Bar --- */
+.countdown-bar {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-heading);
+}
+
+.countdown-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.countdown-timer span {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--gold-solid);
+}
+
+/* --- Story Section (Asymmetric) --- */
+.section-padding {
+    padding: 100px 0;
+}
+
+.story-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.tiny-heading {
+    display: block;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.section-title-left {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    color: var(--dark-brown);
+}
+
+.drop-cap {
+    float: left;
+    font-size: 4rem;
+    line-height: 3.5rem;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+
+.story-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.signature-large {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    color: var(--gold-solid);
+    margin-top: 20px;
+    transform: rotate(-5deg);
+}
+
+.story-visual {
+    position: relative;
+    height: 500px;
+}
+
+.visual-bg {
+    position: absolute;
+    width: 80%;
+    height: 90%;
+    background: var(--primary-color);
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.visual-img {
+    position: absolute;
+    width: 85%;
+    height: 90%;
+    background: url('hero-bg-final.png') center/cover;
+    top: 5%;
+    left: 0;
+    z-index: 2;
+    box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.1);
+    /* Filter for warmth */
+    filter: sepia(30%);
+}
+
+.visual-accent {
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+    background: var(--gold-foil);
+    z-index: 3;
+    border-radius: 50%;
+}
+
+/* --- Events Section (Ticket Style) --- */
+.events-section {
+    background-color: var(--white);
+    position: relative;
+}
+
+.ornamental-divider svg {
+    width: 100%;
+    height: 40px;
+    display: block;
+    margin-top: -1px;
+    background: var(--white);
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.section-subtitle {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: var(--gold-solid);
+    margin-bottom: 60px;
+}
+
+.events-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.event-ticket {
+    display: flex;
+    width: 500px;
+    background: var(--bg-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-ticket:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+}
+
+.ticket-stub {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px dashed rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 20px;
+}
+
+.gold-ticket .ticket-stub {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.white-ticket .ticket-stub {
+    background: var(--dark-brown);
+    color: var(--gold-solid);
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border-radius: 50%;
+    right: -10px;
+}
+
+.ticket-stub::before {
+    top: -10px;
+}
+
+.ticket-stub::after {
+    bottom: -10px;
+}
+
+.ticket-date-number {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ticket-date-month {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.ticket-year {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.ticket-body {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ticket-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--dark-brown);
+}
+
+.location-icon {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.details-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.ticket-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-solid);
+    text-transform: uppercase;
+}
+
+/* --- Donation Section (Cards) --- */
+.donation-section {
+    background: #1a1a1a;
+    color: var(--white);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.gold-text {
+    color: var(--gold-solid);
+}
+
+.white-text {
+    color: #ddd;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.donation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.provider-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.provider-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+.provider-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+.om {
+    background: #FF7900;
+}
+
+.wave {
+    background: #1DC0F1;
+}
+
+.mtn {
+    background: #FFCC00;
+    color: #000;
+}
+
+.provider-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.provider-info strong {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.provider-info span {
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.provider-info .name {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* --- RSVP --- */
+.rsvp-section {
+    text-align: center;
+    background: var(--cream-bg);
+}
+
+.rsvp-wrapper {
+    background: var(--white);
+    padding: 60px;
+    border: 1px solid var(--gold-solid);
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-rsvp-gold {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 2px;
+    /* padding for gradient border */
+    background: var(--gold-foil);
+    border-radius: 50px;
+}
+
+.btn-rsvp-gold span {
+    display: block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.btn-rsvp-gold:hover span {
+    background: transparent;
+    color: #3E2723;
+    /* Dark text on gold foil */
+}
+
+/* --- Footer --- */
+.footer {
+    background: var(--dark-brown);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--gold-solid);
+    margin-bottom: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+
+    /* Fix Hero Background on Mobile (iOS issue with fixed bg) */
+    .hero {
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .story-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .story-visual {
+        height: 300px;
+        order: -1;
+    }
+
+    /* Image first on mobile */
+    .drop-cap {
+        font-size: 3rem;
+    }
+
+    .event-ticket {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .ticket-stub {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .ticket-stub::before {
+        display: none;
+    }
+
+    .countdown-flex {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Mobile Menu Logic */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+    }
+
+    .bar {
+        width: 25px;
+        height: 3px;
+        background: var(--dark-brown);
+        margin: 5px 0;
+    }
+
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 60px;
+        flex-direction: column;
+        background: var(--cream-bg);
+        width: 100%;
+        text-align: center;
+        padding: 40px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* Ensure Navbar is sticky and visible */
+    .header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+}

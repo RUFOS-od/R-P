@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rufos & Prisca - Célébration d'Amour</title>
+    <meta name="description"
+        content="Invitation au mariage de Rufos et Prisca. Dot à Yamoussoukro et Mariage à Abidjan.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Nav -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">R & P</div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#couple">L'Histoire</a></li>
+                <li><a href="#events">Célébrations</a></li>
+                <li><a href="#gifts">Soutien</a></li>
+                <li><a href="#rsvp" class="btn-nav">RSVP</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="hero-border">
+                <p class="pre-title">Union Sacrée</p>
+                <h1 class="main-title">Rufos <span class="amp">&</span> Prisca</h1>
+                <p class="date">28.11.2026</p>
+                <p class="sub-date">Yamoussoukro • Abidjan</p>
+                <a href="#couple" class="scroll-down">
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Countdown -->
+    <div class="countdown-bar">
+        <div class="container countdown-flex">
+            <span class="countdown-label">En route vers la Dot : </span>
+            <div id="countdown" class="countdown-timer">
+                <span id="days">00</span>j
+                <span id="hours">00</span>h
+                <span id="minutes">00</span>m
+                <span id="seconds">00</span>s
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Story Section (MOVED UP) -->
+    <section id="couple" class="story-section section-padding">
+        <div class="container">
+            <div class="story-layout">
+                <div class="story-content" data-aos="fade-right">
+                    <span class="tiny-heading">Alliance Royale</span>
+                    <h2 class="section-title-left">L'Union du Lion & de l'Éléphant</h2>
+                    <p class="drop-cap"></p>
+                    <p>C'est à Abidjan que nos regards se sont croisés pour la première fois. 
+                        Ce qui n'était qu'un simple échange est devenu une évidence.
+                         Rufos a trouvé en Prisca sa perle rare, et Prisca a vu en Rufos son roc.</p>
+                    <p class="drop-cap"></p>
+                    <p>Ainsi ce fait donc la rencontre de deux terres puissantes : le Nigeria et la Côte d'Ivoire.
+                        <strong>Rufos</strong>, digne fils Yoruba et Bété, et <strong>Prisca</strong>, perle Akan,
+                        unissent leurs destins.</p>
+                    <p class="drop-cap"></p>
+                    <p>Au croisement des traditions, entre la majesté de l'Agbada et l'élégance du Kita, nous célébrons
+                        plus qu'un mariage : c'est l'harmonie de nos ancêtres. Rejoignez-nous pour honorer nos racines
+                        et fêter l'Amour.</p>
+                    <div class="signature-large">Rufos & Prisca</div>
+                </div>
+                <div class="story-visual" data-aos="fade-left">
+                    <div class="visual-bg"></div>
+                    <div class="visual-img">
+                        <!-- Placeholder for Couple Image -->
+                    </div>
+                    <div class="visual-accent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adinkra Divider -->
+    <!-- <div class="adinkra-divider" data-aos="zoom-in">
+        <span>Gye Nyame • Akoma • Duafe</span>
+    </div> -->
+
+    <!-- Events Timeline Section (Styled as Tickets) -->
+    <section id="events" class="events-section section-padding">
+        <div class="container">
+            <h2 class="section-title center-text" data-aos="fade-up">Le Programme</h2>
+            <p class="section-subtitle center-text" data-aos="fade-up">Deux dates, deux lieux, un seul amour.</p>
+
+            <div class="events-container">
+                <!-- Event 1: La Dot -->
+                <div class="event-ticket gold-ticket" data-aos="flip-up">
+                    <div class="ticket-stub">
+                        <span class="ticket-date-number">28</span>
+                        <span class="ticket-date-month">NOV</span>
+                        <span class="ticket-year">2026</span>
+                    </div>
+                    <div class="ticket-body">
+                        <h3>La Dot Traditionnelle</h3>
+                        <p class="location-icon">📍 Yamoussoukro</p>
+                        <p class="details-text">Une célébration de nos racines. La famille, la tradition et la joie
+                            seront à l'honneur.</p>
+                        <div class="ticket-footer">
+                            <span>Dress Code : Chic & Élégant</span>
+                            <span class="time">10:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2: Mariage Civil -->
+                <div class="event-ticket white-ticket" data-aos="flip-up" data-aos-delay="200">
+                    <div class="ticket-stub">
+                        <span class="ticket-date-number">20</span>
+                        <span class="ticket-date-month">FÉV</span>
+                        <span class="ticket-year">2027</span>
+                    </div>
+                    <div class="ticket-body">
+                        <h3>Mariage Civil</h3>
+                        <p class="location-icon">📍 Abidjan - Cocody</p>
+                        <p class="details-text">L'officialisation de notre union. Élégance et glamour pour sceller notre
+                            promesse.</p>
+                        <div class="ticket-footer">
+                            <span>Dress Code : Glamour Chic</span>
+                            <span class="time">14:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Donation Section
+    <section id="gifts" class="donation-section section-padding">
+        <div class="container">
+            <div class="donation-box" data-aos="zoom-in">
+                <h2 class="section-title center-text gold-text">Cadeaux & Soutien</h2>
+                <p class="white-text">Votre présence est notre plus beau cadeau. Si vous souhaitez participer à notre
+                    lancement dans la vie commune :</p>
+
+                <div class="donation-grid">
+                    <div class="provider-item">
+                        <div class="provider-circle om">OM</div>
+                        <div class="provider-info">
+                            <strong>Orange Money</strong>
+                            <span>07 00 00 00 00</span>
+                            <span class="name">Rufos K.</span>
+                        </div>
+                    </div>
+                    <div class="provider-item">
+                        <div class="provider-circle wave">W</div>
+                        <div class="provider-info">
+                            <strong>Wave</strong>
+                            <span>05 05 05 05 05</span>
+                            <span class="name">Prisca K.</span>
+                        </div>
+                    </div>
+                    <div class="provider-item">
+                        <div class="provider-circle mtn">M</div>
+                        <div class="provider-info">
+                            <strong>MTN MoMo</strong>
+                            <span>05 00 00 00 00</span>
+                            <span class="name">Rufos K.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section section-padding">
+        <div class="container rsvp-wrapper" data-aos="fade-up">
+            <h2 class="section-title">Répondez s'il vous plaît</h2>
+            <p>Nous avons hâte de célébrer avec vous. Merci de confirmer votre présence.</p>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpnEY7Ic5CAea_XKdPXwDOTPODflJ33T96OuB1hJ1crrzW_g/viewform?usp=publish-editor" target="_blank" class="btn-rsvp-gold">
+                <span>Remplir le Formulaire</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">R & P</div>
+            <p>&copy; 2026-2027 Rufos & Prisca.</p>
+            <p class="made-with">Fait avec ❤️ pour célébrer l'Amour Africain</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
