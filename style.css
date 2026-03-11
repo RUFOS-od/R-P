@@ -808,6 +808,20 @@ ul { list-style: none; }
     font-style: normal;
 }
 
+.proverb-separator {
+    color: rgba(212, 175, 55, 0.35);
+    letter-spacing: 10px;
+    margin: 44px 0;
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.proverb-quote-sm {
+    font-size: 1.85rem;
+    line-height: 1.7;
+}
+
 /* ═══════════════════════════════════════════════════════════
    EVENTS / TICKET SECTION
    ═══════════════════════════════════════════════════════════ */
