@@ -3,17 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rufos & Prisca - Célébration d'Amour</title>
-    <meta name="description"
-        content="Invitation au mariage de Rufos et Prisca. Dot à Yamoussoukro et Mariage à Abidjan.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Rufos & Prisca — Célébration d'Amour</title>
+    <meta name="description" content="Vous êtes cordialement invités à célébrer notre union. Dot à Yamoussoukro le 28 Nov 2026 · Mariage Civil à Abidjan le 20 Fév 2027.">
 
-    <!-- Google Fonts -->
+    <!-- Performance & Mobile -->
+    <meta name="theme-color" content="#B53E0F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- WhatsApp / Open Graph Preview -->
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="💍 Rufos &amp; Prisca — Invitation au Mariage">
+    <meta property="og:description" content="Nous vous invitons à célébrer notre union ! Dot le 28 Nov 2026 à Yamoussoukro · Mariage Civil le 20 Fév 2027 à Abidjan.">
+    <meta property="og:image"       content="hero-bg-fusion.png">
+    <meta property="og:locale"      content="fr_FR">
+
+    <!-- DNS Prefetch pour chargement rapide -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Google Fonts — version allégée -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -23,7 +38,30 @@
 
 <body>
 
-    <!-- Header / Nav -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--              LOADING SCREEN             -->
+    <!-- ═══════════════════════════════════════ -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-ring-wrap">
+                <div class="loading-ring r1"></div>
+                <div class="loading-ring r2"></div>
+                <div class="loading-diamond">◆</div>
+            </div>
+            <div class="loading-initials">R <span class="loading-amp">&</span> P</div>
+            <p class="loading-tagline">Une histoire d'amour commence…</p>
+            <div class="loading-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--              NAVIGATION                  -->
+    <!-- ═══════════════════════════════════════ -->
     <header class="header">
         <nav class="navbar">
             <div class="logo">R & P</div>
@@ -31,6 +69,7 @@
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#couple">L'Histoire</a></li>
                 <li><a href="#events">Célébrations</a></li>
+                <li><a href="#dresscode">Tenue</a></li>
                 <li><a href="#gifts">Soutien</a></li>
                 <li><a href="#rsvp" class="btn-nav">RSVP</a></li>
             </ul>
@@ -42,81 +81,147 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--              HERO SECTION               -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="home" class="hero">
+        <canvas id="petals-canvas" aria-hidden="true"></canvas>
         <div class="hero-overlay-gradient"></div>
-        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1500">
+
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1800">
             <div class="hero-border">
+                <!-- Ornate Corner Pieces -->
+                <span class="corner tl" aria-hidden="true"></span>
+                <span class="corner tr" aria-hidden="true"></span>
+                <span class="corner bl" aria-hidden="true"></span>
+                <span class="corner br" aria-hidden="true"></span>
+
                 <p class="pre-title">Union Sacrée</p>
                 <h1 class="main-title">Rufos <span class="amp">&</span> Prisca</h1>
-                <p class="date">28.11.2026</p>
-                <p class="sub-date">Yamoussoukro • Abidjan</p>
-                <a href="#couple" class="scroll-down">
+
+                <div class="title-divider" aria-hidden="true">
+                    <span class="divider-line"></span>
+                    <span class="divider-gem">◆</span>
+                    <span class="divider-line"></span>
+                </div>
+
+                <p class="date">28 · 11 · 2026</p>
+                <p class="sub-date">Yamoussoukro &nbsp;•&nbsp; Abidjan</p>
+
+                <a href="#couple" class="scroll-down" aria-label="Défiler vers le bas">
                     <span></span>
                 </a>
             </div>
         </div>
+
+        <!-- Wax Seal Badge -->
+        <div class="wax-seal" aria-hidden="true">
+            <div class="seal-inner">
+                <span class="seal-text">R & P</span>
+                <span class="seal-year">2026</span>
+            </div>
+        </div>
     </section>
 
-    <!-- Floating Countdown -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--           COUNTDOWN BANNER              -->
+    <!-- ═══════════════════════════════════════ -->
     <div class="countdown-bar">
         <div class="container countdown-flex">
-            <span class="countdown-label">En route vers la Dot : </span>
+            <span class="countdown-label">En route vers la Dot :</span>
             <div id="countdown" class="countdown-timer">
-                <span id="days">00</span>j
-                <span id="hours">00</span>h
-                <span id="minutes">00</span>m
-                <span id="seconds">00</span>s
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <small>Jours</small>
+                </div>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <small>Heures</small>
+                </div>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <small>Min</small>
+                </div>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <small>Sec</small>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Our Story Section (MOVED UP) -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--           NOTRE HISTOIRE                -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="couple" class="story-section section-padding">
         <div class="container">
             <div class="story-layout">
-                <div class="story-content" data-aos="fade-right">
+                <div class="story-content" data-aos="fade-right" data-aos-duration="1200">
                     <span class="tiny-heading">Alliance Royale</span>
-                    <h2 class="section-title-left">L'Union du Lion & de l'Éléphant</h2>
-                    <p class="drop-cap"></p>
-                    <p>C'est à Abidjan que nos regards se sont croisés pour la première fois. 
+                    <h2 class="section-title-left">L'Union du Super Aigle<br>&amp; de l'Éléphant</h2>
+
+                    <p>C'est à Abidjan que nos regards se sont croisés pour la première fois.
                         Ce qui n'était qu'un simple échange est devenu une évidence.
-                         Rufos a trouvé en Prisca sa perle rare, et Prisca a vu en Rufos son roc.</p>
-                    <p class="drop-cap"></p>
-                    <p>Ainsi ce fait donc la rencontre de deux terres puissantes : le Nigeria et la Côte d'Ivoire.
+                        Rufos a trouvé en Prisca sa perle rare, et Prisca a vu en Rufos son roc.</p>
+
+                    <p>Ainsi se fait la rencontre de deux terres puissantes : le Nigeria et la Côte d'Ivoire.
                         <strong>Rufos</strong>, digne fils Yoruba et Bété, et <strong>Prisca</strong>, perle Akan,
                         unissent leurs destins.</p>
-                    <p class="drop-cap"></p>
+
                     <p>Au croisement des traditions, entre la majesté de l'Agbada et l'élégance du Kita, nous célébrons
                         plus qu'un mariage : c'est l'harmonie de nos ancêtres. Rejoignez-nous pour honorer nos racines
                         et fêter l'Amour.</p>
+
+                    <div class="love-quote-box" data-aos="fade-up" data-aos-delay="300">
+                        <span class="lqb-icon">❝</span>
+                        <p>Deux âmes, un seul destin.</p>
+                        <span class="lqb-icon lqb-close">❞</span>
+                    </div>
+
                     <div class="signature-large">Rufos & Prisca</div>
                 </div>
-                <div class="story-visual" data-aos="fade-left">
+
+                <div class="story-visual" data-aos="fade-left" data-aos-duration="1200">
                     <div class="visual-bg"></div>
-                    <div class="visual-img">
-                        <!-- Placeholder for Couple Image -->
-                    </div>
+                    <div class="visual-img"></div>
                     <div class="visual-accent"></div>
+                    <div class="visual-frame-corner vtl" aria-hidden="true"></div>
+                    <div class="visual-frame-corner vbr" aria-hidden="true"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Adinkra Divider -->
-    <!-- <div class="adinkra-divider" data-aos="zoom-in">
-        <span>Gye Nyame • Akoma • Duafe</span>
-    </div> -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--           PROVERBE AFRICAIN             -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="proverb-section" aria-label="Proverbe africain">
+        <div class="proverb-overlay"></div>
+        <div class="container proverb-inner" data-aos="zoom-in" data-aos-duration="1400">
+            <div class="proverb-ornament" aria-hidden="true">✦</div>
+            <blockquote class="proverb-quote">
+                « Quand deux rivières se rencontrent,<br>elles ne perdent pas leurs noms. »
+            </blockquote>
+            <div class="proverb-ornament" aria-hidden="true">✦</div>
+            <cite class="proverb-cite">— Proverbe Africain</cite>
+        </div>
+    </section>
 
-    <!-- Events Timeline Section (Styled as Tickets) -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--           LE PROGRAMME                  -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="events" class="events-section section-padding">
         <div class="container">
             <h2 class="section-title center-text" data-aos="fade-up">Le Programme</h2>
             <p class="section-subtitle center-text" data-aos="fade-up">Deux dates, deux lieux, un seul amour.</p>
 
             <div class="events-container">
-                <!-- Event 1: La Dot -->
-                <div class="event-ticket gold-ticket" data-aos="flip-up">
+                <!-- Event 1 : La Dot -->
+                <div class="event-ticket gold-ticket" data-aos="flip-up" data-aos-duration="1000">
+                    <div class="ticket-glow" aria-hidden="true"></div>
                     <div class="ticket-stub">
                         <span class="ticket-date-number">28</span>
                         <span class="ticket-date-month">NOV</span>
@@ -128,14 +233,15 @@
                         <p class="details-text">Une célébration de nos racines. La famille, la tradition et la joie
                             seront à l'honneur.</p>
                         <div class="ticket-footer">
-                            <span>Dress Code : Chic & Élégant</span>
+                            <span>Chic & Élégant</span>
                             <span class="time">10:00</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Event 2: Mariage Civil -->
-                <div class="event-ticket white-ticket" data-aos="flip-up" data-aos-delay="200">
+                <!-- Event 2 : Mariage Civil -->
+                <div class="event-ticket white-ticket" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="ticket-glow" aria-hidden="true"></div>
                     <div class="ticket-stub">
                         <span class="ticket-date-number">20</span>
                         <span class="ticket-date-month">FÉV</span>
@@ -143,37 +249,169 @@
                     </div>
                     <div class="ticket-body">
                         <h3>Mariage Civil</h3>
-                        <p class="location-icon">📍 Abidjan - Cocody</p>
+                        <p class="location-icon">📍 Abidjan — Cocody</p>
                         <p class="details-text">L'officialisation de notre union. Élégance et glamour pour sceller notre
                             promesse.</p>
                         <div class="ticket-footer">
-                            <span>Dress Code : Glamour Chic</span>
+                            <span>Glamour Chic</span>
                             <span class="time">14:00</span>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- RSVP Section -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--           CODE VESTIMENTAIRE            -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="dresscode" class="dresscode-section section-padding">
+        <div class="container">
+            <h2 class="section-title center-text" data-aos="fade-up">Code Vestimentaire</h2>
+            <p class="section-subtitle center-text" data-aos="fade-up">Habillez-vous à la hauteur de l'occasion</p>
+
+            <div class="dresscode-grid">
+                <div class="dresscode-card" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="dc-header dc-gold">
+                        <span class="dc-date-badge">28 Nov 2026</span>
+                        <h3>La Dot Traditionnelle</h3>
+                        <p>Yamoussoukro</p>
+                    </div>
+                    <div class="dc-body">
+                        <p class="dc-style">✦ Chic &amp; Élégant ✦</p>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background:#D4AF37;" title="Or"></div>
+                            <div class="color-swatch" style="background:#B53E0F;" title="Brûlé Orange"></div>
+                            <div class="color-swatch" style="background:#3E2723;" title="Brun Foncé"></div>
+                            <div class="color-swatch" style="background:#FFF8E7;border:1px solid #ddd;" title="Crème"></div>
+                        </div>
+                        <p class="dc-hint">Teintes chaudes · Tissus traditionnels africains bienvenus</p>
+                    </div>
+                </div>
+
+                <div class="dresscode-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="dc-header dc-dark">
+                        <span class="dc-date-badge">20 Fév 2027</span>
+                        <h3>Mariage Civil</h3>
+                        <p>Abidjan — Cocody</p>
+                    </div>
+                    <div class="dc-body">
+                        <p class="dc-style">✦ Glamour Chic ✦</p>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background:#FFFFFF;border:1px solid #ddd;" title="Blanc"></div>
+                            <div class="color-swatch" style="background:#D4AF37;" title="Or"></div>
+                            <div class="color-swatch" style="background:#2E5D4B;" title="Émeraude"></div>
+                            <div class="color-swatch" style="background:#C0C0C0;" title="Argent"></div>
+                        </div>
+                        <p class="dc-hint">Tenue de gala · Élégance raffinée exigée</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--              RSVP                       -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="rsvp" class="rsvp-section section-padding">
-        <div class="container rsvp-wrapper" data-aos="fade-up">
-            <h2 class="section-title">Répondez s'il vous plaît</h2>
-            <p>Nous avons hâte de célébrer avec vous. Merci de confirmer votre présence.</p>
+        <div class="container rsvp-wrapper" data-aos="fade-up" data-aos-duration="1200">
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpnEY7Ic5CAea_XKdPXwDOTPODflJ33T96OuB1hJ1crrzW_g/viewform?usp=publish-editor" target="_blank" class="btn-rsvp-gold">
-                <span>Remplir le Formulaire</span>
-            </a>
+            <div class="rsvp-rings" aria-hidden="true">
+                <span class="ring ring-l">💍</span>
+                <span class="ring ring-r">💍</span>
+            </div>
+            <h2 class="section-title">Confirmez votre Présence</h2>
+            <p class="rsvp-deadline">Avant le <strong>01 Novembre 2026</strong></p>
+
+            <!-- ── Formulaire RSVP ── -->
+            <form id="rsvp-form"
+                  action="https://formspree.io/f/xnjgdvkz"
+                  method="POST">
+
+                <!-- Nom complet -->
+                <div class="rsvp-field">
+                    <label for="rsvp-name">Nom complet <span class="req">*</span></label>
+                    <input type="text" id="rsvp-name" name="nom_complet"
+                           placeholder="Prénom & Nom" required autocomplete="name">
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="rsvp-field">
+                    <label for="rsvp-phone">Numéro WhatsApp <span class="req">*</span></label>
+                    <input type="tel" id="rsvp-phone" name="whatsapp"
+                           placeholder="+225 XX XX XX XX XX" required autocomplete="tel">
+                </div>
+
+                <!-- Événements -->
+                <div class="rsvp-field">
+                    <label>Je serai présent(e) à <span class="req">*</span></label>
+                    <div class="event-checkboxes">
+                        <label class="event-check">
+                            <input type="checkbox" name="evenements" value="La Dot — 28 Nov 2026, Yamoussoukro">
+                            <span class="check-box"></span>
+                            <span class="check-label">
+                                <strong>La Dot Traditionnelle</strong>
+                                <small>28 Nov 2026 · Yamoussoukro</small>
+                            </span>
+                        </label>
+                        <label class="event-check">
+                            <input type="checkbox" name="evenements" value="Mariage Civil — 20 Fév 2027, Abidjan">
+                            <span class="check-box"></span>
+                            <span class="check-label">
+                                <strong>Mariage Civil</strong>
+                                <small>20 Fév 2027 · Abidjan — Cocody</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Nombre de personnes -->
+                <div class="rsvp-field">
+                    <label>Nombre de personnes <span class="req">*</span></label>
+                    <div class="guest-counter">
+                        <button type="button" id="guest-minus" aria-label="Réduire">−</button>
+                        <span id="guest-display">1</span>
+                        <button type="button" id="guest-plus" aria-label="Augmenter">+</button>
+                        <input type="hidden" name="nombre_personnes" id="guest-input" value="1">
+                    </div>
+                    <p class="field-hint">Vous inclus(e)</p>
+                </div>
+
+                <!-- Message -->
+                <div class="rsvp-field">
+                    <label for="rsvp-message">Un mot pour les mariés <span class="optional">(optionnel)</span></label>
+                    <textarea id="rsvp-message" name="message" rows="3"
+                              placeholder="Un mot doux pour Rufos & Prisca…"></textarea>
+                </div>
+
+                <button type="submit" class="btn-rsvp-submit">
+                    <span id="btn-submit-text">Confirmer ma Présence ✦</span>
+                </button>
+
+                <!-- Champ anti-spam invisible -->
+                <input type="text" name="_gotcha" style="display:none">
+                <input type="hidden" name="_subject" value="💍 Nouveau RSVP — Rufos & Prisca">
+            </form>
+
+            <!-- ── Message de succès ── -->
+            <div id="rsvp-success" class="rsvp-success" style="display:none;" aria-live="polite">
+                <div class="success-rings">💍 💍</div>
+                <h3>Merci infiniment !</h3>
+                <p>Votre présence a été confirmée avec joie.<br>
+                   Nous avons hâte de célébrer avec vous !</p>
+                <div class="success-sig">Rufos &amp; Prisca</div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Donation Section -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--          CADEAUX & SOUTIEN              -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="gifts" class="donation-section section-padding">
         <div class="container">
-            <div class="donation-box" data-aos="zoom-in">
-                <h2 class="section-title center-text gold-text">Cadeaux & Soutien</h2>
+            <div class="donation-box" data-aos="zoom-in" data-aos-duration="1200">
+                <h2 class="section-title center-text gold-text">Cadeaux &amp; Soutien</h2>
                 <p class="white-text">Votre présence est notre plus beau cadeau. Si vous souhaitez participer à notre
                     lancement dans la vie commune :</p>
 
@@ -207,15 +445,31 @@
         </div>
     </section>
 
-
-    <!-- Footer -->
+    <!-- ═══════════════════════════════════════ -->
+    <!--              FOOTER                     -->
+    <!-- ═══════════════════════════════════════ -->
     <footer class="footer">
+        <div class="footer-kente" aria-hidden="true"></div>
         <div class="footer-content">
             <div class="footer-logo">R & P</div>
-            <p>&copy; 2026-2027 Rufos & Prisca.</p>
+            <div class="footer-hearts" aria-hidden="true">♥ &nbsp; ♥ &nbsp; ♥</div>
+            <p class="footer-dates">28 · 11 · 2026 &nbsp;—&nbsp; 20 · 02 · 2027</p>
+            <p>&copy; 2026-2027 Rufos &amp; Prisca. Tous droits réservés.</p>
             <p class="made-with">Fait avec ❤️ pour célébrer l'Amour Africain</p>
         </div>
     </footer>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--         FLOATING MUSIC PLAYER           -->
+    <!-- ═══════════════════════════════════════ -->
+    <div id="music-player" class="music-player" title="Musique d'ambiance">
+        <button id="music-toggle" class="music-btn" aria-label="Jouer / Mettre en pause la musique">
+            <span class="music-icon" id="music-icon">♪</span>
+        </button>
+        <audio id="bg-music" loop preload="none">
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
