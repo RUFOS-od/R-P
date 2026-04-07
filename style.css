@@ -622,6 +622,10 @@ ul { list-style: none; }
     color: var(--dark-brown);
 }
 
+.story-content {
+    overflow: hidden;
+}
+
 .story-content p {
     margin-bottom: 20px;
     font-size: 1.05rem;
@@ -993,6 +997,54 @@ ul { list-style: none; }
     color: var(--gold-solid);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* ── Calendar Button & Map Link ── */
+.btn-calendar {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 18px;
+    background: var(--cream-bg);
+    border: 1px solid var(--gold-solid);
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--dark-brown);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.btn-calendar:hover {
+    background: var(--gold-solid);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.location-link {
+    display: block;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.location-link:hover {
+    color: var(--gold-solid);
+}
+
+.map-hint {
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.6;
+    text-transform: none;
+    letter-spacing: 0;
+    transition: opacity 0.3s;
+}
+
+.location-link:hover .map-hint {
+    opacity: 1;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1896,16 +1948,18 @@ ul { list-style: none; }
     /* ── Notre Histoire ── */
     .story-layout       { grid-template-columns: 1fr; gap: 24px; }
     .story-visual       { height: 240px; order: -1; }
-    .section-title-left { font-size: 1.75rem; line-height: 1.25; }
+    .section-title-left { font-size: 1.75rem; line-height: 1.25; word-wrap: break-word; overflow-wrap: break-word; }
     .story-content p    { font-size: 0.93rem; }
     .love-quote-box     { padding: 14px 16px; margin: 18px 0; }
     .love-quote-box p   { font-size: 1.45rem !important; }
     .signature-large    { font-size: 2.6rem; }
 
     /* ── Proverbe ── */
-    .proverb-section    { padding: 55px 0; }
-    .proverb-quote      { font-size: 1.45rem; line-height: 1.6; }
-    .proverb-inner      { padding: 0 8px; }
+    .proverb-section    { padding: 45px 0; }
+    .proverb-quote      { font-size: 1.35rem; line-height: 1.5; }
+    .proverb-quote-sm   { font-size: 1.15rem; line-height: 1.55; }
+    .proverb-inner      { padding: 0 12px; }
+    .proverb-separator  { margin: 28px 0; }
 
     /* ── Tickets ── */
     .events-container   { gap: 20px; }
