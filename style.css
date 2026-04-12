@@ -1047,6 +1047,260 @@ ul { list-style: none; }
     opacity: 1;
 }
 
+/* ── Calendar Buttons Row ── */
+.calendar-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.btn-calendar-apple {
+    background: var(--dark-brown) !important;
+    color: var(--white) !important;
+    border-color: var(--dark-brown) !important;
+}
+
+.btn-calendar-apple:hover {
+    background: #1a0e0c !important;
+}
+
+/* ── Color Swatch with Labels ── */
+.color-swatch-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.swatch-label {
+    font-size: 0.68rem;
+    font-family: var(--font-body);
+    color: var(--dark-brown);
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+/* ── Hero Secondary Date ── */
+.date-secondary {
+    font-size: 0.95rem !important;
+    margin-top: 8px !important;
+    opacity: 0.8;
+}
+
+/* ── Second Countdown Bar (Mariage Civil) ── */
+.countdown-bar-civil {
+    background: linear-gradient(135deg, var(--dark-brown) 0%, #1a0e0c 100%);
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* ── Gift / Contact Box in RSVP ── */
+.rsvp-gift-box {
+    margin-top: 30px;
+    padding: 24px;
+    background: rgba(212, 175, 55, 0.06);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.gift-intro {
+    font-size: 0.9rem;
+    color: var(--dark-brown);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.gift-contacts {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gift-contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 22px;
+    background: white;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: var(--transition);
+    min-width: 160px;
+}
+
+.gift-contact-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+    border-color: var(--gold-solid);
+}
+
+.gift-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--dark-brown);
+    font-weight: 600;
+}
+
+.gift-phone {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ── WhatsApp Confirm Button ── */
+.btn-whatsapp-confirm {
+    display: inline-block;
+    margin: 18px 0 12px;
+    padding: 12px 28px;
+    background: #25D366;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+}
+
+.btn-whatsapp-confirm:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* ── Footer Contact ── */
+.footer-contact {
+    margin: 16px 0;
+    padding: 14px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.footer-contact p {
+    font-size: 0.82rem;
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.footer-whatsapp {
+    display: inline-block;
+    padding: 8px 22px;
+    background: #25D366;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-whatsapp:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+}
+
+/* ── Music Prompt Overlay ── */
+.music-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    background: rgba(62, 39, 35, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.music-prompt.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.music-prompt-card {
+    background: var(--cream-bg);
+    border: 2px solid var(--gold-solid);
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-align: center;
+    max-width: 340px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.music-prompt-icon {
+    font-size: 2.5rem;
+    color: var(--gold-solid);
+    margin-bottom: 12px;
+}
+
+.music-prompt-text {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--dark-brown);
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.music-prompt-song {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--dark-brown);
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.music-prompt-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.music-prompt-btn {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+}
+
+.music-yes {
+    background: var(--primary-color);
+    color: white;
+}
+
+.music-yes:hover {
+    background: #8B2E0A;
+    transform: translateY(-2px);
+}
+
+.music-no {
+    background: transparent;
+    color: var(--dark-brown);
+    border: 1px solid rgba(62, 39, 35, 0.2);
+}
+
+.music-no:hover {
+    background: rgba(62, 39, 35, 0.05);
+}
+
 /* ═══════════════════════════════════════════════════════════
    DRESS CODE SECTION
    ═══════════════════════════════════════════════════════════ */
@@ -1847,7 +2101,7 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE — MOBILE (≤ 768px)
    ═══════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 680px) {
 
     /* ── Performance : supprimer backdrop-filter (lent sur mobile) ── */
     .header {

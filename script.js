@@ -182,32 +182,53 @@ document.querySelectorAll('.nav-links li a').forEach(link => {
     });
 });
 
-/* ─── 6. COUNTDOWN TIMER ────────────────────────────────── */
-const weddingDate = new Date('November 28, 2026 10:00:00').getTime();
+/* ─── 6. DUAL COUNTDOWN TIMERS ─────────────────────────── */
+function startCountdown(targetDate, ids, containerId, doneMsg) {
+    const target = new Date(targetDate).getTime();
 
-const countdownInterval = setInterval(() => {
-    const now = Date.now();
-    const gap = weddingDate - now;
+    // Remplir immédiatement (pas attendre 1s)
+    update();
 
-    if (gap < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById('countdown').innerHTML =
-            '<span style="font-family:var(--font-script);font-size:1.6rem;color:var(--gold-solid)">Le grand jour est arrivé ! ✨</span>';
-        return;
+    const interval = setInterval(update, 1000);
+
+    function update() {
+        const gap = target - Date.now();
+
+        if (gap < 0) {
+            clearInterval(interval);
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML =
+                    '<span style="font-family:var(--font-script);font-size:1.4rem;color:var(--gold-solid)">' + doneMsg + '</span>';
+            }
+            return;
+        }
+
+        const d = Math.floor(gap / 86400000);
+        const h = Math.floor((gap % 86400000) / 3600000);
+        const m = Math.floor((gap % 3600000)  /   60000);
+        const s = Math.floor((gap %   60000)  /    1000);
+        const fmt = n => String(n).padStart(2, '0');
+
+        const el = id => document.getElementById(id);
+        if (el(ids[0])) el(ids[0]).textContent = fmt(d);
+        if (el(ids[1])) el(ids[1]).textContent = fmt(h);
+        if (el(ids[2])) el(ids[2]).textContent = fmt(m);
+        if (el(ids[3])) el(ids[3]).textContent = fmt(s);
     }
+}
 
-    const d  = Math.floor(gap / 86400000);
-    const h  = Math.floor((gap % 86400000) / 3600000);
-    const m  = Math.floor((gap % 3600000)  /   60000);
-    const s  = Math.floor((gap %   60000)  /    1000);
+// Countdown 1 : La Dot — 28 Nov 2026
+startCountdown('November 28, 2026 10:00:00',
+    ['days', 'hours', 'minutes', 'seconds'],
+    'countdown',
+    'Le grand jour est arrivé ! ✨');
 
-    const fmt = n => String(n).padStart(2, '0');
-
-    document.getElementById('days').textContent    = fmt(d);
-    document.getElementById('hours').textContent   = fmt(h);
-    document.getElementById('minutes').textContent = fmt(m);
-    document.getElementById('seconds').textContent = fmt(s);
-}, 1000);
+// Countdown 2 : Mariage Civil — 20 Fév 2027
+startCountdown('February 20, 2027 14:00:00',
+    ['days2', 'hours2', 'minutes2', 'seconds2'],
+    'countdown-civil',
+    'Le mariage civil, c\'est maintenant ! 💍');
 
 /* ─── 7. SMOOTH SCROLL ──────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
