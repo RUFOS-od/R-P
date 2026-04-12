@@ -249,8 +249,8 @@ const musicIcon = document.getElementById('music-icon');
 let   isPlaying = false;
 let   musicUnlocked = false;
 
-// Réglage du volume (doux en fond)
-bgMusic.volume = 0.35;
+// Réglage du volume (très doux en fond)
+bgMusic.volume = 0.15;
 
 function playMusic() {
     bgMusic.play().then(() => {
@@ -278,18 +278,21 @@ musicBtn.addEventListener('click', () => {
     }
 });
 
-// Sur mobile : la musique ne peut démarrer qu'après une interaction utilisateur.
-// On attend le premier toucher sur la page pour lancer automatiquement.
-function unlockAndPlay() {
-    if (!musicUnlocked) {
-        playMusic();
-    }
-    document.removeEventListener('touchstart', unlockAndPlay);
-    document.removeEventListener('click',      unlockAndPlay);
+// Lancer la musique automatiquement dès que possible.
+// Les navigateurs bloquent l'autoplay sans interaction, donc on réessaie en boucle.
+function autoPlayMusic() {
+    bgMusic.play().then(() => {
+        isPlaying = true;
+        musicUnlocked = true;
+        musicIcon.textContent = '⏸';
+        musicBtn.classList.add('playing');
+    }).catch(() => {
+        // Navigateur bloque → on réessaie dans 500ms
+        setTimeout(autoPlayMusic, 500);
+    });
 }
 
-document.addEventListener('touchstart', unlockAndPlay, { once: true, passive: true });
-document.addEventListener('click',      unlockAndPlay, { once: true });
+autoPlayMusic();
 
 // Petit tooltip discret sur le bouton musique
 musicBtn.setAttribute('title', 'Don\'t Play with me — Thompsxn Therapy');
