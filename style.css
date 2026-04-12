@@ -1995,10 +1995,6 @@ ul { list-style: none; }
     bottom: 30px;
     right: 30px;
     z-index: 900;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-direction: row-reverse;
 }
 
 .music-btn {
@@ -2027,8 +2023,11 @@ ul { list-style: none; }
     color: var(--dark-brown);
 }
 
-/* Label texte à côté du bouton */
+/* Label texte au-dessus du bouton */
 .music-label {
+    position: absolute;
+    bottom: 68px;
+    right: 0;
     background: var(--dark-brown);
     color: var(--gold-solid);
     font-family: var(--font-body);
@@ -2038,16 +2037,16 @@ ul { list-style: none; }
     border-radius: 20px;
     white-space: nowrap;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    animation: labelFade 4s ease-in-out forwards;
+    animation: labelFade 6s ease-in-out forwards;
     pointer-events: none;
     letter-spacing: 0.5px;
 }
 
 @keyframes labelFade {
-    0%   { opacity: 0; transform: translateX(10px); }
-    15%  { opacity: 1; transform: translateX(0); }
-    80%  { opacity: 1; }
-    100% { opacity: 0; transform: translateX(10px); }
+    0%   { opacity: 0; transform: translateY(5px); }
+    10%  { opacity: 1; transform: translateY(0); }
+    75%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-5px); }
 }
 
 .music-icon {
