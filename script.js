@@ -8,7 +8,7 @@ const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
               || window.innerWidth <= 768;
 
 /* ─── 1. LOADING SCREEN ─────────────────────────────────── */
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loading-screen');
 
     // Mobile : intro courte (1.4s) | Desktop : cinématique (2.6s)
@@ -18,9 +18,6 @@ window.addEventListener('load', () => {
         loadingScreen.classList.add('hidden');
 
         setTimeout(() => {
-            // Confetti seulement sur desktop (trop lourd sur mobile)
-            if (!isMobile) fireConfetti();
-
             AOS.init({
                 once:     true,
                 offset:   isMobile ? 30 : 80,
@@ -32,137 +29,30 @@ window.addEventListener('load', () => {
     }, delay);
 });
 
-/* ─── 2. CONFETTI BURST ──────────────────────────────────── */
-function fireConfetti() {
-    const colors = ['#D4AF37', '#B53E0F', '#FFF8E7', '#2E5D4B', '#FFFFFF', '#FCF6BA'];
-    const count = 90;
-
-    for (let i = 0; i < count; i++) {
-        createConfettiPiece(colors[Math.floor(Math.random() * colors.length)]);
-    }
-}
-
-function createConfettiPiece(color) {
-    const piece = document.createElement('div');
-    const size  = Math.random() * 9 + 4;
-    const isCircle = Math.random() > 0.5;
-
-    Object.assign(piece.style, {
-        position:         'fixed',
-        top:              '-12px',
-        left:             Math.random() * 100 + 'vw',
-        width:            size + 'px',
-        height:           size + 'px',
-        background:       color,
-        zIndex:           '9997',
-        borderRadius:     isCircle ? '50%' : '2px',
-        pointerEvents:    'none',
-        opacity:          '1',
-        animation:        `confettiFall ${Math.random() * 2.5 + 1.5}s ease-in forwards`,
-        animationDelay:   Math.random() * 1.2 + 's',
-    });
-
-    document.body.appendChild(piece);
-    piece.addEventListener('animationend', () => piece.remove());
-}
-
-/* ─── 3. CANVAS PETAL ANIMATION ─────────────────────────── */
-const canvas  = document.getElementById('petals-canvas');
-
-// Sur mobile : on désactive le canvas complètement (économise CPU/batterie)
-if (isMobile) {
-    canvas.style.display = 'none';
-}
-
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-}
-
-if (!isMobile) {
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-}
-
-class Petal {
-    constructor(randomY) {
-        this.reset(randomY);
-    }
-
-    reset(startY) {
-        this.x        = Math.random() * canvas.width;
-        this.y        = startY !== undefined ? Math.random() * canvas.height : -20;
-        this.w        = Math.random() * 14 + 7;
-        this.h        = Math.random() * 9  + 5;
-        this.speed    = Math.random() * 0.8 + 0.3;
-        this.angle    = Math.random() * Math.PI * 2;
-        this.rotSpeed = (Math.random() - 0.5) * 0.04;
-        this.drift    = (Math.random() - 0.5) * 0.5;
-        this.opacity  = Math.random() * 0.5 + 0.2;
-
-        // Mix of gold, cream, and light petals
-        const palette = [
-            `rgba(212,175,55,${this.opacity})`,
-            `rgba(255,248,231,${this.opacity})`,
-            `rgba(251,245,183,${this.opacity})`,
-            `rgba(255,215,0,${this.opacity * 0.7})`,
-        ];
-        this.color = palette[Math.floor(Math.random() * palette.length)];
-    }
-
-    update() {
-        this.y     += this.speed;
-        this.x     += this.drift;
-        this.angle += this.rotSpeed;
-        if (this.y > canvas.height + 20) this.reset();
-    }
-
-    draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.beginPath();
-        ctx.ellipse(0, 0, this.w / 2, this.h / 2, 0, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.restore();
-    }
-}
-
-const PETAL_COUNT = 28;
-const petals = [];
-
-if (!isMobile) {
-    for (let i = 0; i < PETAL_COUNT; i++) {
-        petals.push(new Petal(true));
-    }
-
-    function animatePetals() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        petals.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animatePetals);
-    }
-
-    animatePetals();
-}
-
 /* ─── 4. SCROLL PROGRESS BAR ─────────────────────────────── */
 const progressBar = document.getElementById('scroll-progress');
+const header      = document.querySelector('.header');
+let   scrollTicking = false;
 
-window.addEventListener('scroll', () => {
-    const scrollTop  = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress   = (scrollTop / scrollHeight) * 100;
+function updateScrollUI() {
+    const scrollTop     = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight  = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress      = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
     progressBar.style.width = progress + '%';
 
     // Shrink nav on scroll
-    const header = document.querySelector('.header');
     if (scrollTop > 60) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+    scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+        requestAnimationFrame(updateScrollUI);
+        scrollTicking = true;
     }
 }, { passive: true });
 
@@ -184,12 +74,9 @@ document.querySelectorAll('.nav-links li a').forEach(link => {
 
 /* ─── 6. DUAL COUNTDOWN TIMERS ─────────────────────────── */
 function startCountdown(targetDate, ids, containerId, doneMsg) {
-    const target = new Date(targetDate).getTime();
-
-    // Remplir immédiatement (pas attendre 1s)
-    update();
-
-    const interval = setInterval(update, 1000);
+    const target   = new Date(targetDate).getTime();
+    const elements = ids.map(id => document.getElementById(id));
+    let   interval;
 
     function update() {
         const gap = target - Date.now();
@@ -198,8 +85,7 @@ function startCountdown(targetDate, ids, containerId, doneMsg) {
             clearInterval(interval);
             const container = document.getElementById(containerId);
             if (container) {
-                container.innerHTML =
-                    '<span style="font-family:var(--font-script);font-size:1.4rem;color:var(--gold-solid)">' + doneMsg + '</span>';
+                container.innerHTML = '<span class="countdown-done">' + doneMsg + '</span>';
             }
             return;
         }
@@ -210,22 +96,30 @@ function startCountdown(targetDate, ids, containerId, doneMsg) {
         const s = Math.floor((gap %   60000)  /    1000);
         const fmt = n => String(n).padStart(2, '0');
 
-        const el = id => document.getElementById(id);
-        if (el(ids[0])) el(ids[0]).textContent = fmt(d);
-        if (el(ids[1])) el(ids[1]).textContent = fmt(h);
-        if (el(ids[2])) el(ids[2]).textContent = fmt(m);
-        if (el(ids[3])) el(ids[3]).textContent = fmt(s);
+        if (elements[0]) elements[0].textContent = fmt(d);
+        if (elements[1]) elements[1].textContent = fmt(h);
+        if (elements[2]) elements[2].textContent = fmt(m);
+        if (elements[3]) elements[3].textContent = fmt(s);
     }
+
+    // Remplir immédiatement (pas attendre 1s) — `interval` doit exister avant cet appel :
+    // si la date cible est déjà passée, update() appelle clearInterval(interval) tout de suite.
+    interval = setInterval(update, 1000);
+    update();
 }
 
-// Countdown 1 : La Dot — 28 Nov 2026
-startCountdown('November 28, 2026 10:00:00',
+// Côte d'Ivoire est en UTC+0 toute l'année (pas de changement d'heure) :
+// on fixe l'offset explicitement pour que le compte à rebours soit correct
+// quel que soit le fuseau horaire du visiteur.
+
+// Countdown 1 : La Dot — 28 Nov 2026, 10h, Yamoussoukro
+startCountdown('2026-11-28T10:00:00Z',
     ['days', 'hours', 'minutes', 'seconds'],
     'countdown',
     'Le grand jour est arrivé ! ✨');
 
-// Countdown 2 : Mariage Civil — 20 Fév 2027
-startCountdown('February 20, 2027 14:00:00',
+// Countdown 2 : Mariage Civil — 20 Fév 2027, 14h, Abidjan
+startCountdown('2027-02-20T14:00:00Z',
     ['days2', 'hours2', 'minutes2', 'seconds2'],
     'countdown-civil',
     'Le mariage civil, c\'est maintenant ! 💍');
@@ -246,27 +140,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const musicBtn  = document.getElementById('music-toggle');
 const bgMusic   = document.getElementById('bg-music');
 const musicIcon = document.getElementById('music-icon');
-let   isPlaying = false;
-let   musicUnlocked = false;
+let   isPlaying        = false;
+let   userPaused       = false;
+let   autoplayAttempts = 0;
+const MAX_AUTOPLAY_ATTEMPTS = 10;
 
 // Réglage du volume (très doux en fond)
 bgMusic.volume = 0.15;
 
+function setPlayingState(playing) {
+    isPlaying = playing;
+    musicIcon.textContent = playing ? '⏸' : '♪';
+    musicBtn.classList.toggle('playing', playing);
+}
+
 function playMusic() {
-    bgMusic.play().then(() => {
-        isPlaying    = true;
-        musicUnlocked = true;
-        musicIcon.textContent = '⏸';
-        musicBtn.classList.add('playing');
-        musicBtn.title = 'Don\'t Play with me — Thompsxn Therapy';
-    }).catch(() => {});
+    userPaused = false;
+    bgMusic.play().then(() => setPlayingState(true)).catch(() => {});
 }
 
 function pauseMusic() {
+    userPaused = true;
     bgMusic.pause();
-    isPlaying = false;
-    musicIcon.textContent = '♪';
-    musicBtn.classList.remove('playing');
+    setPlayingState(false);
 }
 
 // Bouton play/pause manuel
@@ -278,72 +174,21 @@ musicBtn.addEventListener('click', () => {
     }
 });
 
+musicBtn.setAttribute('title', 'Don\'t Play with me — Thompsxn Therapy');
+
 // Lancer la musique automatiquement dès que possible.
-// Les navigateurs bloquent l'autoplay sans interaction, donc on réessaie en boucle.
+// Les navigateurs bloquent l'autoplay sans interaction : on réessaie un nombre
+// limité de fois, et on s'arrête dès que l'utilisateur a mis en pause manuellement
+// (sinon une tentative programmée avant la pause pouvait relancer le son après coup).
 function autoPlayMusic() {
-    bgMusic.play().then(() => {
-        isPlaying = true;
-        musicUnlocked = true;
-        musicIcon.textContent = '⏸';
-        musicBtn.classList.add('playing');
-    }).catch(() => {
-        // Navigateur bloque → on réessaie dans 500ms
+    if (userPaused || isPlaying || autoplayAttempts >= MAX_AUTOPLAY_ATTEMPTS) return;
+    autoplayAttempts++;
+    bgMusic.play().then(() => setPlayingState(true)).catch(() => {
         setTimeout(autoPlayMusic, 500);
     });
 }
 
 autoPlayMusic();
-
-// Petit tooltip discret sur le bouton musique
-musicBtn.setAttribute('title', 'Don\'t Play with me — Thompsxn Therapy');
-
-/* ─── 9. TICKET SPARKLE ON HOVER (desktop seulement) ────── */
-document.querySelectorAll('.event-ticket').forEach(ticket => {
-    ticket.addEventListener(isMobile ? 'touchstart' : 'mouseenter', () => {
-        const rect = ticket.getBoundingClientRect();
-        spawnSparkle(rect.left + rect.width / 2, rect.top + window.scrollY);
-    });
-});
-
-function spawnSparkle(x, y) {
-    for (let i = 0; i < 6; i++) {
-        const s = document.createElement('div');
-        const angle = (i / 6) * 360;
-        const dist  = Math.random() * 40 + 20;
-        Object.assign(s.style, {
-            position:   'absolute',
-            left:       x + 'px',
-            top:        y + 'px',
-            width:      '6px',
-            height:     '6px',
-            background: '#D4AF37',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            zIndex:     '500',
-            transform:  `translate(-50%, -50%)`,
-            animation:  `sparkleMove ${0.6 + Math.random() * 0.4}s ease-out forwards`,
-        });
-
-        // Use CSS custom props for direction
-        s.style.setProperty('--sx', Math.cos((angle * Math.PI) / 180) * dist + 'px');
-        s.style.setProperty('--sy', Math.sin((angle * Math.PI) / 180) * dist + 'px');
-
-        document.body.appendChild(s);
-        s.addEventListener('animationend', () => s.remove());
-    }
-}
-
-// Add sparkle keyframes dynamically once
-(function addSparkleKeyframes() {
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes sparkleMove {
-            0%   { transform: translate(-50%,-50%) scale(1); opacity:1; }
-            100% { transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy))) scale(0); opacity:0; }
-        }
-    `;
-    document.head.appendChild(style);
-})();
 
 /* ─── 10. RSVP FORM ─────────────────────────────────────── */
 const rsvpForm    = document.getElementById('rsvp-form');
@@ -355,27 +200,37 @@ const guestInput  = document.getElementById('guest-input');
 const submitBtn   = document.querySelector('.btn-rsvp-submit');
 const submitText  = document.getElementById('btn-submit-text');
 let   guestCount  = 1;
+let   guestPulseTimeout = null;
+const GUEST_MIN = 1;
+const GUEST_MAX = 20;
 
 // ── Compteur de personnes ──
+function updateGuestCounter() {
+    guestDisplay.textContent = guestCount;
+    guestInput.value = guestCount;
+    guestMinus.disabled = guestCount <= GUEST_MIN;
+    guestPlus.disabled  = guestCount >= GUEST_MAX;
+
+    clearTimeout(guestPulseTimeout);
+    guestDisplay.style.transform = 'scale(1.3)';
+    guestPulseTimeout = setTimeout(() => guestDisplay.style.transform = 'scale(1)', 200);
+}
+
 guestMinus.addEventListener('click', () => {
-    if (guestCount > 1) {
+    if (guestCount > GUEST_MIN) {
         guestCount--;
-        guestDisplay.textContent = guestCount;
-        guestInput.value = guestCount;
-        guestDisplay.style.transform = 'scale(1.3)';
-        setTimeout(() => guestDisplay.style.transform = 'scale(1)', 200);
+        updateGuestCounter();
     }
 });
 
 guestPlus.addEventListener('click', () => {
-    if (guestCount < 20) {
+    if (guestCount < GUEST_MAX) {
         guestCount++;
-        guestDisplay.textContent = guestCount;
-        guestInput.value = guestCount;
-        guestDisplay.style.transform = 'scale(1.3)';
-        setTimeout(() => guestDisplay.style.transform = 'scale(1)', 200);
+        updateGuestCounter();
     }
 });
+
+updateGuestCounter();
 
 // ── Soumission via Formspree (AJAX) ──
 if (rsvpForm) {
@@ -385,7 +240,7 @@ if (rsvpForm) {
         // Validation : au moins un événement coché
         const checked = rsvpForm.querySelectorAll('input[name="evenements"]:checked');
         if (checked.length === 0) {
-            showFormError('Veuillez sélectionner au moins un événement. 💍');
+            showFormError('Veuillez sélectionner au moins un événement.');
             return;
         }
 
@@ -409,6 +264,7 @@ if (rsvpForm) {
                     rsvpForm.style.display    = 'none';
                     rsvpSuccess.style.display = 'block';
                     rsvpSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    rsvpSuccess.focus();
                 }, 400);
             } else {
                 const json = await response.json();
@@ -431,20 +287,11 @@ function showFormError(msg) {
     if (!err) {
         err = document.createElement('p');
         err.id = 'form-error';
-        Object.assign(err.style, {
-            color:        'var(--primary-color)',
-            fontSize:     '0.85rem',
-            marginTop:    '12px',
-            textAlign:    'center',
-            fontWeight:   '600',
-            padding:      '10px',
-            borderRadius: '6px',
-            background:   'rgba(181,62,15,0.07)',
-        });
+        err.className = 'form-error';
+        err.setAttribute('role', 'alert');
         submitBtn.insertAdjacentElement('afterend', err);
     }
     err.textContent = msg;
-    setTimeout(() => err.remove(), 4000);
 }
 
 // Animation fadeOut du formulaire

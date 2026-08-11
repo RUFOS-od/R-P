@@ -7,6 +7,12 @@
     <title>Rufos & Prisca — Célébration d'Amour</title>
     <meta name="description" content="Vous êtes cordialement invités à célébrer notre union. Dot à Yamoussoukro le 28 Nov 2026 · Mariage Civil à Abidjan le 20 Fév 2027.">
 
+    <!-- Ne pas indexer : page privée destinée à être partagée directement (WhatsApp lit quand même og:*) -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <!-- Performance & Mobile -->
     <meta name="theme-color" content="#B53E0F">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,15 +32,16 @@
     <!-- DNS Prefetch pour chargement rapide -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://unpkg.com">
 
-    <!-- Google Fonts — version allégée -->
+    <!-- Google Fonts — version allégée, chargement non bloquant -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@400;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- AOS Animation Library — hébergée localement (plus de dépendance CDN tierce), chargement non bloquant -->
+    <link href="vendor/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="vendor/aos.css" rel="stylesheet"></noscript>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -87,8 +94,8 @@
     <!--              HERO SECTION               -->
     <!-- ═══════════════════════════════════════ -->
     <section id="home" class="hero">
-        <canvas id="petals-canvas" aria-hidden="true"></canvas>
         <div class="hero-overlay-gradient"></div>
+        <span class="visually-hidden">Photo de Rufos et Prisca en tenue traditionnelle africaine.</span>
 
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1800">
             <div class="hero-border">
@@ -108,21 +115,13 @@
                 </div>
 
                 <p class="date">28 · 11 · 2026</p>
-                <p class="sub-date">Dot — Yamoussoukro</p>
+                <p class="sub-date">Dot à Yamoussoukro</p>
                 <p class="date date-secondary">20 · 02 · 2027</p>
-                <p class="sub-date">Mariage Civil — Abidjan</p>
+                <p class="sub-date">Mariage Civil à Abidjan</p>
 
                 <a href="#couple" class="scroll-down" aria-label="Défiler vers le bas">
                     <span></span>
                 </a>
-            </div>
-        </div>
-
-        <!-- Wax Seal Badge -->
-        <div class="wax-seal" aria-hidden="true">
-            <div class="seal-inner">
-                <span class="seal-text">R & P</span>
-                <span class="seal-year">2026</span>
             </div>
         </div>
     </section>
@@ -133,7 +132,7 @@
     <!-- Countdown 1 : La Dot -->
     <div class="countdown-bar" data-aos="fade-up" data-aos-duration="800">
         <div class="container countdown-flex">
-            <span class="countdown-label">🎉 La Dot — Yamoussoukro :</span>
+            <span class="countdown-label">La Dot à Yamoussoukro :</span>
             <div id="countdown" class="countdown-timer">
                 <div class="countdown-item">
                     <span id="days">--</span>
@@ -161,7 +160,7 @@
     <!-- Countdown 2 : Mariage Civil -->
     <div class="countdown-bar countdown-bar-civil" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
         <div class="container countdown-flex">
-            <span class="countdown-label">💍 Mariage Civil — Abidjan :</span>
+            <span class="countdown-label">Mariage Civil à Abidjan :</span>
             <div id="countdown-civil" class="countdown-timer">
                 <div class="countdown-item">
                     <span id="days2">--</span>
@@ -216,6 +215,7 @@
                 <div class="story-visual" data-aos="fade-left" data-aos-duration="1200">
                     <div class="visual-bg"></div>
                     <div class="visual-img"></div>
+                    <span class="visually-hidden">Portrait de Rufos et Prisca.</span>
                     <div class="visual-accent"></div>
                     <div class="visual-frame-corner vtl" aria-hidden="true"></div>
                     <div class="visual-frame-corner vbr" aria-hidden="true"></div>
@@ -235,7 +235,7 @@
             <div data-aos="zoom-in" data-aos-duration="1400">
                 <div class="proverb-ornament" aria-hidden="true">✦</div>
                 <blockquote class="proverb-quote">
-                    « Quand deux rivières se rencontrent,<br>elles ne perdent pas leurs noms. »
+                    « Si tu veux aller vite, marche seul.<br>Si tu veux aller loin, marche accompagné. »
                 </blockquote>
                 <div class="proverb-ornament" aria-hidden="true">✦</div>
                 <cite class="proverb-cite">— Proverbe Africain</cite>
@@ -244,14 +244,14 @@
             <!-- Séparateur -->
             <div class="proverb-separator" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</div>
 
-            <!-- Cantique des Cantiques 8:6 (version courte) -->
+            <!-- 1 Corinthiens 13:8 -->
             <div data-aos="zoom-in" data-aos-duration="1400" data-aos-delay="200">
                 <div class="proverb-ornament" aria-hidden="true">✦</div>
                 <blockquote class="proverb-quote proverb-quote-sm">
-                    « Car l'amour est fort comme la mort. »
+                    « L'amour ne périt jamais. »
                 </blockquote>
                 <div class="proverb-ornament" aria-hidden="true">✦</div>
-                <cite class="proverb-cite">— Cantique des Cantiques 8:6</cite>
+                <cite class="proverb-cite">— 1 Corinthiens 13:8</cite>
             </div>
 
         </div>
@@ -276,7 +276,7 @@
                     </div>
                     <div class="ticket-body">
                         <h3>La Dot</h3>
-                        <a href="https://maps.google.com/?q=Yamoussoukro,+C%C3%B4te+d'Ivoire" target="_blank" rel="noopener" class="location-icon location-link">📍 Yamoussoukro <span class="map-hint">→ Voir sur la carte</span></a>
+                        <a href="https://maps.google.com/?q=Yamoussoukro,+C%C3%B4te+d'Ivoire" target="_blank" rel="noopener" class="location-icon location-link">Yamoussoukro <span class="map-hint">→ Voir sur la carte</span></a>
                         <p class="details-text">Une célébration de nos racines. La famille, la tradition et la joie
                             seront à l'honneur.</p>
                         <div class="ticket-footer">
@@ -285,10 +285,10 @@
                         </div>
                         <div class="calendar-buttons">
                             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dot+Traditionnelle+-+Rufos+%26+Prisca&dates=20261128T100000/20261128T200000&location=Yamoussoukro,+C%C3%B4te+d'Ivoire&details=C%C3%A9l%C3%A9bration+de+la+Dot+Traditionnelle+de+Rufos+%26+Prisca.+Dress+code+%3A+Chic+%26+%C3%89l%C3%A9gant" target="_blank" rel="noopener" class="btn-calendar">
-                                📅 Google Calendar
+                                Google Calendar
                             </a>
                             <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20261128T100000%0ADTEND:20261128T200000%0ASUMMARY:Dot Traditionnelle - Rufos %26 Prisca%0ALOCATION:Yamoussoukro%2C Côte d'Ivoire%0ADESCRIPTION:Célébration de la Dot. Dress code: Chic %26 Élégant%0AEND:VEVENT%0AEND:VCALENDAR" download="Dot-Rufos-Prisca.ics" class="btn-calendar btn-calendar-apple">
-                                🍎 Apple Calendar
+                                Apple Calendar
                             </a>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                     </div>
                     <div class="ticket-body">
                         <h3>Mariage Civil</h3>
-                        <a href="https://maps.google.com/?q=Cocody,+Abidjan,+C%C3%B4te+d'Ivoire" target="_blank" rel="noopener" class="location-icon location-link">📍 Abidjan — Cocody <span class="map-hint">→ Voir sur la carte</span></a>
+                        <a href="https://maps.google.com/?q=Cocody,+Abidjan,+C%C3%B4te+d'Ivoire" target="_blank" rel="noopener" class="location-icon location-link">Abidjan — Cocody <span class="map-hint">→ Voir sur la carte</span></a>
                         <p class="details-text">L'officialisation de notre union. Élégance et glamour pour sceller notre
                             promesse.</p>
                         <div class="ticket-footer">
@@ -313,10 +313,10 @@
                         </div>
                         <div class="calendar-buttons">
                             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mariage+Civil+-+Rufos+%26+Prisca&dates=20270220T140000/20270220T230000&location=Cocody,+Abidjan,+C%C3%B4te+d'Ivoire&details=Mariage+Civil+de+Rufos+%26+Prisca.+Dress+code+%3A+Glamour+Chic" target="_blank" rel="noopener" class="btn-calendar">
-                                📅 Google Calendar
+                                Google Calendar
                             </a>
                             <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270220T140000%0ADTEND:20270220T230000%0ASUMMARY:Mariage Civil - Rufos %26 Prisca%0ALOCATION:Cocody%2C Abidjan%2C Côte d'Ivoire%0ADESCRIPTION:Mariage Civil. Dress code: Glamour Chic%0AEND:VEVENT%0AEND:VCALENDAR" download="MariageCivil-Rufos-Prisca.ics" class="btn-calendar btn-calendar-apple">
-                                🍎 Apple Calendar
+                                Apple Calendar
                             </a>
                         </div>
                     </div>
@@ -343,10 +343,10 @@
                     <div class="dc-body">
                         <p class="dc-style">✦ Chic &amp; Élégant ✦</p>
                         <div class="color-palette">
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#D4AF37;"></div><span class="swatch-label">Or</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#B53E0F;"></div><span class="swatch-label">Terre cuite</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#3E2723;"></div><span class="swatch-label">Brun</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#FFF8E7;border:1px solid #ddd;"></div><span class="swatch-label">Crème</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#D4AF37;" title="Or"></div><span class="swatch-label">Or</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#B53E0F;" title="Terracotta"></div><span class="swatch-label">Terracotta</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#3E2723;" title="Marron"></div><span class="swatch-label">Marron</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#FFF8E7;border:1px solid #ddd;" title="Crème"></div><span class="swatch-label">Crème</span></div>
                         </div>
                         <p class="dc-hint">Teintes chaudes · Tissus traditionnels africains bienvenus</p>
                     </div>
@@ -361,10 +361,10 @@
                     <div class="dc-body">
                         <p class="dc-style">✦ Glamour Chic ✦</p>
                         <div class="color-palette">
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #ddd;"></div><span class="swatch-label">Blanc</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#D4AF37;"></div><span class="swatch-label">Or</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#2E5D4B;"></div><span class="swatch-label">Émeraude</span></div>
-                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#C0C0C0;"></div><span class="swatch-label">Argent</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #ddd;" title="Blanc"></div><span class="swatch-label">Blanc</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#D4AF37;" title="Or"></div><span class="swatch-label">Or</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#2E5D4B;" title="Vert bouteille"></div><span class="swatch-label">Vert bouteille</span></div>
+                            <div class="color-swatch-wrap"><div class="color-swatch" style="background:#C0C0C0;" title="Gris perle"></div><span class="swatch-label">Gris perle</span></div>
                         </div>
                         <p class="dc-hint">Tenue de gala · Élégance raffinée exigée</p>
                     </div>
@@ -379,12 +379,8 @@
     <section id="rsvp" class="rsvp-section section-padding">
         <div class="container rsvp-wrapper" data-aos="fade-up" data-aos-duration="1200">
 
-            <div class="rsvp-rings" aria-hidden="true">
-                <span class="ring ring-l">💍</span>
-                <span class="ring ring-r">💍</span>
-            </div>
             <h2 class="section-title">Confirmez votre Présence</h2>
-            <p class="rsvp-deadline">Avant le <strong>01 Novembre 2026</strong></p>
+            <p class="rsvp-deadline">Avant le <strong>22 Novembre 2026</strong></p>
 
             <!-- ── Formulaire RSVP ── -->
             <form id="rsvp-form"
@@ -406,8 +402,8 @@
                 </div>
 
                 <!-- Événements -->
-                <div class="rsvp-field">
-                    <label>Je serai présent(e) à <span class="req">*</span></label>
+                <fieldset class="rsvp-field rsvp-fieldset">
+                    <legend>Je serai présent(e) à <span class="req">*</span></legend>
                     <div class="event-checkboxes">
                         <label class="event-check">
                             <input type="checkbox" name="evenements" value="La Dot — 28 Nov 2026, Yamoussoukro">
@@ -426,18 +422,18 @@
                             </span>
                         </label>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- Nombre de personnes -->
                 <div class="rsvp-field">
-                    <label>Nombre de personnes <span class="req">*</span></label>
-                    <div class="guest-counter">
-                        <button type="button" id="guest-minus" aria-label="Réduire">−</button>
-                        <span id="guest-display">1</span>
-                        <button type="button" id="guest-plus" aria-label="Augmenter">+</button>
+                    <label id="guest-counter-label">Nombre de personnes <span class="req">*</span></label>
+                    <div class="guest-counter" role="group" aria-labelledby="guest-counter-label">
+                        <button type="button" id="guest-minus" aria-label="Réduire le nombre de personnes">−</button>
+                        <span id="guest-display" aria-live="polite">1</span>
+                        <button type="button" id="guest-plus" aria-label="Augmenter le nombre de personnes">+</button>
                         <input type="hidden" name="nombre_personnes" id="guest-input" value="1">
                     </div>
-                    <p class="field-hint">Vous inclus(e)</p>
+                    <p class="field-hint">Vous inclus(e) · Maximum 20 personnes</p>
                 </div>
 
                 <!-- Message -->
@@ -458,28 +454,27 @@
 
             <!-- ── Liste de cadeaux / Contact ── -->
             <div class="rsvp-gift-box" data-aos="fade-up" data-aos-delay="200">
-                <p class="gift-intro">🎁 Pour la liste de cadeaux ou toute question, n'hésitez pas à nous contacter directement :</p>
+                <p class="gift-intro">Pour la liste de cadeaux ou toute question, n'hésitez pas à nous contacter directement :</p>
                 <div class="gift-contacts">
                     <a href="https://wa.me/2250703785519" target="_blank" rel="noopener" class="gift-contact-link">
                         <span class="gift-name">Rufos</span>
-                        <span class="gift-phone">💬 +225 07 03 78 55 19</span>
+                        <span class="gift-phone">WhatsApp : +225 07 03 78 55 19</span>
                     </a>
                     <a href="https://wa.me/2250797645214" target="_blank" rel="noopener" class="gift-contact-link">
                         <span class="gift-name">Prisca</span>
-                        <span class="gift-phone">💬 +225 07 97 64 52 14</span>
+                        <span class="gift-phone">WhatsApp : +225 07 97 64 52 14</span>
                     </a>
                 </div>
             </div>
 
             <!-- ── Message de succès ── -->
-            <div id="rsvp-success" class="rsvp-success" style="display:none;" aria-live="polite">
-                <div class="success-rings">💍 💍</div>
+            <div id="rsvp-success" class="rsvp-success" style="display:none;" aria-live="polite" tabindex="-1">
                 <h3>Merci infiniment !</h3>
                 <p>Votre présence a été confirmée avec joie.<br>
                    Nous avons hâte de célébrer avec vous !</p>
                 <a href="https://wa.me/2250703785519?text=Bonjour%20Rufos%20%26%20Prisca%20!%20Je%20confirme%20ma%20pr%C3%A9sence%20%C3%A0%20votre%20mariage%20%F0%9F%92%8D"
                    target="_blank" rel="noopener" class="btn-whatsapp-confirm">
-                    💬 Envoyer une confirmation WhatsApp
+                    Envoyer une confirmation WhatsApp
                 </a>
                 <div class="success-sig">Rufos &amp; Prisca</div>
             </div>
@@ -499,7 +494,7 @@
             <p class="footer-dates">28 · 11 · 2026 &nbsp;—&nbsp; 20 · 02 · 2027</p>
             <div class="footer-contact">
                 <p>Une question ? Contactez-nous :</p>
-                <a href="https://wa.me/2250703785519" class="footer-whatsapp">💬 WhatsApp</a>
+                <a href="https://wa.me/2250703785519" class="footer-whatsapp">WhatsApp</a>
             </div>
             <p>&copy; 2026-2027 Rufos &amp; Prisca. Tous droits réservés.</p>
             <p class="made-with">Fait avec ❤️ pour célébrer l'Amour Africain</p>
@@ -520,8 +515,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="vendor/aos.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

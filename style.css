@@ -8,6 +8,8 @@
     --primary-color: #B53E0F;
     --gold-foil: linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C, #FCF6BA, #BF953F);
     --gold-solid: #D4AF37;
+    --gold-dark: #7a5f1a;
+    --muted-text: #6b6b6b;
     --dark-brown: #3E2723;
     --cream-bg: #FFF8E7;
     --white: #FFFFFF;
@@ -66,6 +68,19 @@ ul { list-style: none; }
 }
 
 .center-text { text-align: center; }
+
+/* Contenu visible uniquement des lecteurs d'écran (alternative texte aux photos en background-image) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
 /* ═══════════════════════════════════════════════════════════
    LOADING SCREEN
@@ -220,6 +235,7 @@ ul { list-style: none; }
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
@@ -236,7 +252,7 @@ ul { list-style: none; }
     -webkit-text-fill-color: transparent;
     border: 2px solid var(--gold-solid);
     padding: 5px 12px;
-    animation: shimmerGold 3s linear infinite;
+    animation: shimmerGold 1.8s ease-out 2 forwards;
     transition: box-shadow var(--transition);
 }
 
@@ -298,23 +314,13 @@ ul { list-style: none; }
     background-attachment: fixed;
 }
 
-#petals-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-
 .hero-overlay-gradient {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom,
-        rgba(62, 39, 35, 0.35) 0%,
-        rgba(62, 39, 35, 0.65) 60%,
-        rgba(62, 39, 35, 0.85) 100%);
+        rgba(62, 39, 35, 0.55) 0%,
+        rgba(62, 39, 35, 0.72) 50%,
+        rgba(62, 39, 35, 0.9) 100%);
     z-index: 1;
 }
 
@@ -382,7 +388,7 @@ ul { list-style: none; }
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerGold 4s linear infinite;
+    animation: shimmerGold 2.2s ease-out 2 forwards;
     filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.4));
 }
 
@@ -467,53 +473,6 @@ ul { list-style: none; }
     100% { transform: translateY(26px); opacity: 0; }
 }
 
-/* ── Wax Seal ── */
-.wax-seal {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 90px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    box-shadow:
-        0 0 0 5px var(--gold-solid),
-        0 0 0 8px var(--primary-color),
-        0 10px 30px rgba(0, 0, 0, 0.4);
-    animation: sealPulse 3s ease-in-out infinite;
-    cursor: default;
-}
-
-@keyframes sealPulse {
-    0%, 100% { box-shadow: 0 0 0 5px var(--gold-solid), 0 0 0 8px var(--primary-color), 0 10px 30px rgba(0,0,0,0.4); }
-    50%       { box-shadow: 0 0 0 7px var(--gold-solid), 0 0 0 11px rgba(181,62,15,0.5), 0 14px 40px rgba(0,0,0,0.5); }
-}
-
-.seal-inner { text-align: center; line-height: 1.2; }
-
-.seal-text {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    color: var(--gold-solid);
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.seal-year {
-    display: block;
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.85);
-    letter-spacing: 2px;
-    margin-top: 2px;
-}
-
 /* ═══════════════════════════════════════════════════════════
    COUNTDOWN BANNER
    ═══════════════════════════════════════════════════════════ */
@@ -567,7 +526,7 @@ ul { list-style: none; }
 .countdown-item span {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--gold-solid);
+    color: var(--white);
     line-height: 1;
 }
 
@@ -582,10 +541,16 @@ ul { list-style: none; }
 
 .countdown-sep {
     font-size: 1.4rem;
-    color: var(--gold-solid);
+    color: var(--white);
     font-weight: 700;
     opacity: 0.7;
     animation: sepBlink 1s step-end infinite;
+}
+
+.countdown-done {
+    font-family: var(--font-script);
+    font-size: 1.4rem;
+    color: var(--gold-solid);
 }
 
 @keyframes sepBlink {
@@ -714,7 +679,12 @@ ul { list-style: none; }
     background-size: 200% auto;
     z-index: 3;
     border-radius: 50%;
-    animation: shimmerGold 3s linear infinite, floatAccent 3s ease-in-out infinite;
+    animation: floatAccent 3s ease-in-out infinite;
+}
+
+/* Le doré ne scintille qu'une fois, quand la photo apparaît au scroll */
+.story-visual.aos-animate .visual-accent {
+    animation: shimmerGold 1.8s ease-out 2, floatAccent 3s ease-in-out infinite;
 }
 
 @keyframes floatAccent {
@@ -742,7 +712,7 @@ ul { list-style: none; }
 .proverb-section {
     background: var(--dark-brown);
     position: relative;
-    padding: 90px 0;
+    padding: 60px 0;
     overflow: hidden;
 }
 
@@ -782,24 +752,24 @@ ul { list-style: none; }
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 780px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .proverb-ornament {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--gold-solid);
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 14px;
     animation: floatAccent 3s ease-in-out infinite;
 }
 
 .proverb-quote {
     font-family: var(--font-script);
-    font-size: 2.6rem;
+    font-size: 2.1rem;
     color: var(--white);
-    line-height: 1.5;
-    margin-bottom: 20px;
+    line-height: 1.4;
+    margin-bottom: 14px;
     font-style: normal;
 }
 
@@ -814,16 +784,16 @@ ul { list-style: none; }
 
 .proverb-separator {
     color: rgba(212, 175, 55, 0.35);
-    letter-spacing: 10px;
-    margin: 44px 0;
+    letter-spacing: 8px;
+    margin: 28px 0;
     display: block;
     text-align: center;
     font-size: 1rem;
 }
 
 .proverb-quote-sm {
-    font-size: 1.85rem;
-    line-height: 1.7;
+    font-size: 1.7rem;
+    line-height: 1.5;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -843,7 +813,7 @@ ul { list-style: none; }
 .section-subtitle {
     font-family: var(--font-script);
     font-size: 2rem;
-    color: var(--gold-solid);
+    color: var(--gold-dark);
     margin-bottom: 60px;
 }
 
@@ -994,7 +964,7 @@ ul { list-style: none; }
     justify-content: space-between;
     font-size: 0.78rem;
     font-weight: 600;
-    color: var(--gold-solid);
+    color: var(--gold-dark);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -1454,25 +1424,6 @@ ul { list-style: none; }
     z-index: 2;
 }
 
-.rsvp-rings {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.ring {
-    display: inline-block;
-    animation: floatAccent 2.5s ease-in-out infinite;
-}
-
-.ring-r {
-    animation-delay: 0.5s;
-    transform: scaleX(-1);
-    display: inline-block;
-}
-
 .rsvp-wrapper .section-title {
     margin-bottom: 18px;
 }
@@ -1523,10 +1474,21 @@ ul { list-style: none; }
    ═══════════════════════════════════════════════════════════ */
 .rsvp-deadline {
     font-size: 0.88rem;
-    color: #888;
+    color: var(--muted-text);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 36px;
+}
+
+.form-error {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 6px;
+    background: rgba(181, 62, 15, 0.07);
 }
 
 #rsvp-form {
@@ -1549,8 +1511,26 @@ ul { list-style: none; }
     margin-bottom: 10px;
 }
 
+.rsvp-fieldset {
+    border: none;
+    padding: 0;
+}
+
+.rsvp-fieldset legend {
+    display: block;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dark-brown);
+    margin-bottom: 10px;
+    padding: 0;
+}
+
 .req     { color: var(--primary-color); }
-.optional { font-weight: 400; text-transform: none; letter-spacing: 0; color: #aaa; font-size: 0.78rem; }
+.optional { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted-text); font-size: 0.78rem; }
 
 .rsvp-field input[type="text"],
 .rsvp-field input[type="tel"],
@@ -1666,7 +1646,7 @@ ul { list-style: none; }
 
 .check-label small {
     font-size: 0.72rem;
-    color: #888;
+    color: var(--muted-text);
     font-family: var(--font-body);
     text-transform: none;
     letter-spacing: 0;
@@ -1701,6 +1681,15 @@ ul { list-style: none; }
 .guest-counter button:hover { background: rgba(181, 62, 15, 0.08); }
 .guest-counter button:active { background: rgba(181, 62, 15, 0.15); }
 
+.guest-counter button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.guest-counter button:disabled:hover,
+.guest-counter button:disabled:active {
+    background: transparent;
+}
+
 #guest-display {
     width: 60px;
     text-align: center;
@@ -1715,7 +1704,7 @@ ul { list-style: none; }
 
 .field-hint {
     font-size: 0.72rem;
-    color: #aaa;
+    color: var(--muted-text);
     margin-top: 7px;
     text-transform: none;
     letter-spacing: 0;
@@ -1732,9 +1721,13 @@ ul { list-style: none; }
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    animation: shimmerGold 3s linear infinite;
     box-shadow: var(--shadow-gold);
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Le doré ne scintille qu'une fois, quand le formulaire apparaît au scroll */
+.rsvp-wrapper.aos-animate .btn-rsvp-submit {
+    animation: shimmerGold 1.8s ease-out 2 forwards;
 }
 
 .btn-rsvp-submit:hover {
@@ -1776,13 +1769,6 @@ ul { list-style: none; }
 @keyframes successReveal {
     0%   { opacity: 0; transform: translateY(20px) scale(0.95); }
     100% { opacity: 1; transform: translateY(0)    scale(1); }
-}
-
-.success-rings {
-    font-size: 2.4rem;
-    letter-spacing: 10px;
-    margin-bottom: 20px;
-    display: block;
 }
 
 .rsvp-success h3 {
@@ -1948,8 +1934,12 @@ ul { list-style: none; }
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmerGold 4s linear infinite;
     margin-bottom: 12px;
+}
+
+/* Le doré ne scintille qu'une fois, quand le pied de page apparaît au scroll */
+.footer-logo.aos-animate {
+    animation: shimmerGold 2s ease-out 2 forwards;
 }
 
 .footer-hearts {
@@ -2062,14 +2052,6 @@ ul { list-style: none; }
 .music-btn.playing .music-icon { animation-play-state: running; }
 
 /* ═══════════════════════════════════════════════════════════
-   CONFETTI ANIMATION
-   ═══════════════════════════════════════════════════════════ */
-@keyframes confettiFall {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
-}
-
-/* ═══════════════════════════════════════════════════════════
    CULTURAL KENTE ELEMENTS
    ═══════════════════════════════════════════════════════════ */
 .kente-border {
@@ -2121,13 +2103,13 @@ ul { list-style: none; }
     .ticket-stub::after { display: none; }
 
     .rsvp-wrapper    { padding: 50px 30px; }
-    .proverb-quote   { font-size: 2rem; }
+    .proverb-quote   { font-size: 1.8rem; }
 }
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE — MOBILE (≤ 768px)
    ═══════════════════════════════════════════════════════════ */
-@media (max-width: 680px) {
+@media (max-width: 768px) {
 
     /* ── Performance : supprimer backdrop-filter (lent sur mobile) ── */
     .header {
@@ -2178,8 +2160,9 @@ ul { list-style: none; }
         gap: 0;
     }
 
-    .nav-links li { padding: 10px 0; border-bottom: 1px solid rgba(212,175,55,0.12); }
+    .nav-links li { padding: 0; border-bottom: 1px solid rgba(212,175,55,0.12); }
     .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { display: block; padding: 10px 0; }
     .nav-links.active { left: 0; }
 
     /* ── Hero ── */
@@ -2200,11 +2183,6 @@ ul { list-style: none; }
     .sub-date      { font-size: 0.75rem; letter-spacing: 2px; }
     .divider-line  { width: 40px; }
     .scroll-down   { margin-top: 24px; height: 42px; }
-
-    /* Wax seal plus petit */
-    .wax-seal      { width: 64px; height: 64px; bottom: 16px; }
-    .seal-text     { font-size: 0.66rem; }
-    .seal-year     { font-size: 0.52rem; }
 
     /* ── Countdown ── */
     .countdown-bar { padding: 14px 0; }
@@ -2235,11 +2213,11 @@ ul { list-style: none; }
     .signature-large    { font-size: 2.6rem; }
 
     /* ── Proverbe ── */
-    .proverb-section    { padding: 45px 0; }
-    .proverb-quote      { font-size: 1.35rem; line-height: 1.5; }
-    .proverb-quote-sm   { font-size: 1.15rem; line-height: 1.55; }
+    .proverb-section    { padding: 32px 0; }
+    .proverb-quote      { font-size: 1.3rem; line-height: 1.4; }
+    .proverb-quote-sm   { font-size: 1.1rem; line-height: 1.45; }
     .proverb-inner      { padding: 0 12px; }
-    .proverb-separator  { margin: 28px 0; }
+    .proverb-separator  { margin: 18px 0; }
 
     /* ── Tickets ── */
     .events-container   { gap: 20px; }
@@ -2254,7 +2232,6 @@ ul { list-style: none; }
 
     /* ── RSVP ── */
     .rsvp-wrapper       { padding: 36px 18px; box-shadow: 10px 10px 0 rgba(212,175,55,0.06); }
-    .rsvp-rings         { font-size: 1.5rem; margin-bottom: 14px; }
     .rsvp-wrapper p     { font-size: 0.95rem; }
     .btn-rsvp-gold      { margin-top: 24px; }
     .btn-rsvp-gold span { padding: 15px 30px; font-size: 0.82rem; letter-spacing: 2px; }
