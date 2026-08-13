@@ -36,6 +36,12 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Empêche le header fixe de recouvrir le haut d'une section quand on y
+   accède par ancre (lien direct, navigation clavier, pas seulement le clic JS) */
+#home, #couple, #events, #dresscode, #rsvp {
+    scroll-margin-top: 90px;
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--cream-bg);
@@ -1534,7 +1540,8 @@ ul { list-style: none; }
 
 .rsvp-field input[type="text"],
 .rsvp-field input[type="tel"],
-.rsvp-field textarea {
+.rsvp-field textarea,
+.rsvp-field select {
     width: 100%;
     padding: 14px 18px;
     border: 1px solid rgba(212, 175, 55, 0.4);
@@ -1546,6 +1553,20 @@ ul { list-style: none; }
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
     -webkit-appearance: none;
+}
+
+.rsvp-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23B53E0F'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%23B53E0F' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 42px;
+    cursor: pointer;
+}
+
+.rsvp-field select:invalid,
+.rsvp-field select.placeholder-selected {
+    color: rgba(62, 39, 35, 0.55);
 }
 
 .rsvp-field input:focus,
@@ -1801,10 +1822,12 @@ ul { list-style: none; }
 @media (max-width: 768px) {
     .rsvp-field input[type="text"],
     .rsvp-field input[type="tel"],
-    .rsvp-field textarea {
+    .rsvp-field textarea,
+    .rsvp-field select {
         font-size: 16px; /* évite le zoom automatique sur iOS */
         padding: 13px 15px;
     }
+    .rsvp-field select { padding-right: 40px; }
     .check-label strong { font-size: 0.78rem; }
 }
 

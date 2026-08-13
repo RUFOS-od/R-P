@@ -146,7 +146,7 @@ let   autoplayAttempts = 0;
 const MAX_AUTOPLAY_ATTEMPTS = 10;
 
 // Réglage du volume (très doux en fond)
-bgMusic.volume = 0.15;
+bgMusic.volume = 0.07;
 
 function setPlayingState(playing) {
     isPlaying = playing;
